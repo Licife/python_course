@@ -347,16 +347,16 @@ def even_or_odd(number):
 ---
 第三部分 第一题
 
-    A[start] --> B[n]
-    B --> C{is it i*i}
-    C --> |Yes| D[i*i]
-    C --> |No| E{i*i < n <  i+1*i+1}
-    E --> |Yes| F{i*i - n < i+1*i+1 - n}
-    F --> |Yes| G[i*i]
-    F --> |No| H[i+1*i+1]
-    G --> I[End]
-    H --> I[End]
-    D --> I[End]
+    A[start] --> B[n]<br>
+    B --> C{is it i*i}<br>
+    C --> |Yes| D[i*i]<br>
+    C --> |No| E{i*i < n <  i+1*i+1}<br>
+    E --> |Yes| F{i*i - n < i+1*i+1 - n}<br>
+    F --> |Yes| G[i*i]<br>
+    F --> |No| H[i+1*i+1]<br>
+    G --> I[End]<br>
+    H --> I[End]<br>
+    D --> I[End]<br>
 ```mermaid
 flowchart TD
     A[start] --> B[n]
@@ -373,12 +373,12 @@ flowchart TD
 ---
 第三部分 第四题
 
-flowchart TD
-    A[start] --> B{number % 2 ==0 }
-    B --> |Yes| C['Even']
-    B --> |No| D['Odd']
-    C --> E[End]
-    D --> E[End]
+flowchart TD<br>
+    A[start] --> B{number % 2 ==0 }<br>
+    B --> |Yes| C['Even']<br>
+    B --> |No| D['Odd']<br>
+    C --> E[End]<br>
+    D --> E[End]<br>
 ```mermaid
 flowchart TD
     A[start] --> B{number % 2 ==0 }
@@ -390,12 +390,12 @@ flowchart TD
 第三部分 第三题
 
 flowchart TD
-    A[start] --> B[char in sentence]
-    B --> C[i in lower_case]
-    C --> D{i == char}
-    D --> |Yes| E[count+1]
-    D --> |No| F
-    E --> F[End]
+    A[start] --> B[char in sentence]<br>
+    B --> C[i in lower_case]<br>
+    C --> D{i == char}<br>
+    D --> |Yes| E[count+1]<br>
+    D --> |No| F<br>
+    E --> F[End]<br>
 ```mermaid
 flowchart TD
     A[start] --> B[char in sentence]

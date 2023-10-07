@@ -1354,13 +1354,13 @@ You have passed all of the tests! :)
 ---
 第二部分 第一题
 
-flowchart TD
-    A[strat] --> B{number < 0}
-    B --> |Yes| C[End]
-    B --> |No| D{i % 3 == 0 and i % 5 ==0}
-    D --> |Yes| E[sum+=i]
-    D --> |No| C
-    E --> C
+flowchart TD<br>
+    A[strat] --> B{number < 0}<br>
+    B --> |Yes| C[End]<br>
+    B --> |No| D{i % 3 == 0 and i % 5 ==0}<br>
+    D --> |Yes| E[sum+=i]<br>
+    D --> |No| C<br>
+    E --> C<br>
 
 ```mermaid
 flowchart TD
@@ -1374,15 +1374,15 @@ flowchart TD
 ---
 第二部分 第五题
 
-flowchart TD
-    A[strat] --> B(i in list_string1)
-    B --> C{i in list_vowel_lower}
-    C --> |No| D{i in list_vowel_upper}
-    C --> |Yes| E["list_string.remove(i)"]
-    D --> |Yes| E["list_string.remove(i)"]
-    D --> |No| F[End]
-    E --> G["''.join(list_string)"]
-    G--> F
+flowchart TD<br>
+    A[strat] --> B(i in list_string1)<br>
+    B --> C{i in list_vowel_lower}<br>
+    C --> |No| D{i in list_vowel_upper}<br>
+    C --> |Yes| E["list_string.remove(i)"]<br>
+    D --> |Yes| E["list_string.remove(i)"]<br>
+    D --> |No| F[End]<br>
+    E --> G["''.join(list_string)"]<br>
+    G--> F<br>
 
 ```mermaid
 flowchart TD
