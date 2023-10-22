@@ -1405,7 +1405,7 @@ flowchart TD
 创建 遍历 切片 增删改查 排序 反转
 
 2. 哪两种方法可以用来对Python的列表排序？这两种方法有和区别？
-sort() 与 sorted() sorted是临时的
+sort() 与 sorted() sorted是临时的 不改变原来的列表
 
 3. 如何将Python列表逆序打印？
 list.reverse()
