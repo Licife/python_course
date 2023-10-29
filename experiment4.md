@@ -1,10 +1,10 @@
 # 实验四 Python字典和while循环
 
-班级： 21计科1
+班级： 21计科03
 
-学号： 202302200000
+学号： 20210302327
 
-姓名： 张三
+姓名： 廖超逸
 
 Github地址：<https://github.com/yourusername/python_course>
 
