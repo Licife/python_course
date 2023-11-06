@@ -13,6 +13,12 @@ class AlienInvasion:
         pygame.display.set_caption('Alien Invasion')
 
         self.settings = Settings()
+        
+        # 全屏模式
+        # self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+        # self.settings.screen_width = self.screen.get_rect().width
+        # self.settings.screen_height = self.screen.get_rect().height
+
         self.screen = pygame.display.set_mode((self.settings.screen_width, self.settings.screen_height))
 
         self.ship = Ship(self)
@@ -22,7 +28,7 @@ class AlienInvasion:
         while True:
             self._check_events()
             self._update_screen()
-
+            self.ship.update()
             self.clock.tick(60)
 
     def _check_events(self):
@@ -30,6 +36,38 @@ class AlienInvasion:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
+            elif event.type == pygame.KEYDOWN:
+                self._check_keydown_events(event)
+            elif event.type == pygame.KEYUP:
+                self._check_keyup_events(event)
+            elif event.type == pygame.MOUSEBUTTONUP:
+                x, y = pygame.mouse.get_pos()
+                print(x, y)
+
+    def _check_keydown_events(self, event):
+        if event.key == pygame.K_RIGHT:
+            # 向右移动
+            self.ship.moving_right = True
+        elif event.key == pygame.K_LEFT:
+            # 向左移动
+            self.ship.moving_left = True
+        elif event.key == pygame.K_UP:
+            self.ship.moving_up = True
+        elif event.key == pygame.K_DOWN:
+            self.ship.moving_down = True
+        elif event.key == pygame.K_q:
+            sys.exit()
+
+    def _check_keyup_events(self, event):
+        if event.key == pygame.K_RIGHT:
+            self.ship.moving_right = False
+        elif event.key == pygame.K_LEFT:
+            # 向左移动
+            self.ship.moving_left = False
+        elif event.key == pygame.K_UP:
+            self.ship.moving_up = False
+        elif event.key == pygame.K_DOWN:
+            self.ship.moving_down = False
 
     def _update_screen(self):
         # 每次循环重新绘制
