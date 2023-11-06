@@ -2,6 +2,7 @@ import sys
 import pygame
 from Setting import Settings
 from Ship import Ship
+from Bullet import Bullet
 
 
 class AlienInvasion:
@@ -13,7 +14,7 @@ class AlienInvasion:
         pygame.display.set_caption('Alien Invasion')
 
         self.settings = Settings()
-        
+
         # 全屏模式
         # self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
         # self.settings.screen_width = self.screen.get_rect().width
@@ -22,6 +23,7 @@ class AlienInvasion:
         self.screen = pygame.display.set_mode((self.settings.screen_width, self.settings.screen_height))
 
         self.ship = Ship(self)
+        self.bullets = pygame.sprite.Group()
 
     def run_game(self):
         """开始游戏的主循环"""
@@ -29,6 +31,7 @@ class AlienInvasion:
             self._check_events()
             self._update_screen()
             self.ship.update()
+            self._update_bullets()
             self.clock.tick(60)
 
     def _check_events(self):
@@ -40,9 +43,10 @@ class AlienInvasion:
                 self._check_keydown_events(event)
             elif event.type == pygame.KEYUP:
                 self._check_keyup_events(event)
-            elif event.type == pygame.MOUSEBUTTONUP:
-                x, y = pygame.mouse.get_pos()
-                print(x, y)
+
+            # elif event.type == pygame.MOUSEBUTTONUP:
+            #     x, y = pygame.mouse.get_pos()
+            #     print(x, y)
 
     def _check_keydown_events(self, event):
         if event.key == pygame.K_RIGHT:
@@ -55,6 +59,8 @@ class AlienInvasion:
             self.ship.moving_up = True
         elif event.key == pygame.K_DOWN:
             self.ship.moving_down = True
+        elif event.key == pygame.K_SPACE:
+            self._fire_bullet()
         elif event.key == pygame.K_q:
             sys.exit()
 
@@ -69,13 +75,30 @@ class AlienInvasion:
         elif event.key == pygame.K_DOWN:
             self.ship.moving_down = False
 
+    def _fire_bullet(self):
+        # if len(self.bullets) < self.settings.bullets_allowed 限制子弹数量
+        new_bullet = Bullet(self)
+        self.bullets.add(new_bullet)
+
     def _update_screen(self):
         # 每次循环重新绘制
         self.screen.fill(self.settings.bg_color)
+
+        for bullet in self.bullets.sprites():
+            bullet.draw_bullet()
+
         self.ship.blitme()
 
         # 抹除旧屏幕 重新绘制新屏幕
         pygame.display.flip()
+
+    def _update_bullets(self):
+        self.bullets.update()
+
+        for bullet in self.bullets.copy():
+            if bullet.rect.bottom <= 0:
+                self.bullets.remove(bullet)
+        # print(len(self.bullets))
 
 
 if __name__ == '__main__':
