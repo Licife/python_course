@@ -45,14 +45,26 @@ class Screen:
         self.available_y = self.screen.get_rect().height - (2 * star_height)
         number_rows = self.available_y // star_height + 1
 
+        List_X = []
+        List_Y = []
+
         for row_number in range(number_rows):
             for star_number in range(number_stars_x):
+                List_X.append(current_x + star_width)
+                List_X.append(current_x - star_width)
+                List_Y.append(current_y + star_height)
+                List_Y.append(current_y - star_height)
+
+                # print(List_X)
+                # print(List_Y)
+
                 random_x = randint(0, self.available_x)
                 random_y = randint(0, self.available_y)
                 # self.setting.screen_width - star_width
                 # self.setting.screen_height - star_height
                 while current_x - star_width <= random_x <= current_x + star_width \
-                        and current_y - star_height <= random_y <= current_y + star_height:
+                        and current_y - star_height <= random_y <= current_y + star_height \
+                            and random_x not in List_X and random_y not in List_Y:
                     random_x = randint(0, self.available_x)
                     random_y = randint(0, self.available_y)
                     # print('xxx')
